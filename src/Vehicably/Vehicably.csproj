@@ -26,5 +26,10 @@
 		<ProjectReference Include="..\Vehicably.Domain\Vehicably.Domain.csproj" />
 		<ProjectReference Include="..\Vehicably.Infrastructure\Vehicably.Infrastructure.csproj" />
 	</ItemGroup>
+	<ItemGroup>
+		<None Update="assets/vehicleData.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
 
 </Project>

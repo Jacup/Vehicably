@@ -1,14 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Vehicably.Domain.Models.Vehicles;
+using Vehicably.Domain.Models.Vehicles.VehicleData;
 
 namespace Vehicably.Infrastructure.DAL.Configurations;
 
-public class VehicleModelConfiguration : IEntityTypeConfiguration<VehicleModel>
+public class VehicleModelConfiguration : BaseEntityConfiguration<VehicleModel>
 {
-    public void Configure(EntityTypeBuilder<VehicleModel> builder)
+    public override void Configure(EntityTypeBuilder<VehicleModel> builder)
     {
-        builder.HasKey(vm => vm.Id);
+        base.Configure(builder);
 
         builder.Property(vm => vm.Name)
             .HasMaxLength(32)

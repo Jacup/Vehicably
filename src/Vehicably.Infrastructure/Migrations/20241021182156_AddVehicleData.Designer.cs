@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Vehicably.Infrastructure.DAL;
 
@@ -11,9 +12,11 @@ using Vehicably.Infrastructure.DAL;
 namespace Vehicably.Infrastructure.Migrations
 {
     [DbContext(typeof(VehicablyDbContext))]
-    partial class VehicablyDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241021182156_AddVehicleData")]
+    partial class AddVehicleData
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

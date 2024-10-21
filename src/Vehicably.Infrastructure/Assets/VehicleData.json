@@ -1,0 +1,20 @@
+{
+  "brands": [
+    {
+      "name": "Brand A",
+      "models": [
+        { "name": "Model A1" },
+        { "name": "Model A2" },
+        { "name": "Model A3" }
+      ]
+    },
+    {
+      "name": "Brand B",
+      "models": [
+        { "name": "Model B1" },
+        { "name": "Model B2" },
+        { "name": "Model B3" }
+      ]
+    }
+  ]
+}

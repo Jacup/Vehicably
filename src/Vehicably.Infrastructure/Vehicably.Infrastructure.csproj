@@ -24,8 +24,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Folder Include="Migrations\" />
 		<Folder Include="Services\Interfaces\" />
 		<Folder Include="Services\Repositories\" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="Assets\VehicleData.json">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
 	</ItemGroup>
 
 </Project>

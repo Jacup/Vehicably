@@ -1,6 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Vehicably.Infrastructure.Services;
+using Vehicably.Infrastructure.Services.Interfaces;
+using Vehicably.Infrastructure.Services.Repositories;
 
 namespace Vehicably.Infrastructure.DAL;
 
@@ -15,5 +18,10 @@ public static class DbContextExtensions
             .LogTo(Console.WriteLine, LogLevel.Information)
             .EnableSensitiveDataLogging()
             .EnableDetailedErrors());
+
+        services.AddScoped<IVehicleBrandRepository, VehicleBrandRepository>();
+        services.AddScoped<IVehicleModelRepository, VehicleModelRepository>();
+
+        services.AddScoped<IUnitOfWork, UnitOfWork>();
     }
 }

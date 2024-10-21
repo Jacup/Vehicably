@@ -1,6 +1,10 @@
-﻿using Microsoft.AspNetCore.Http.Json;
+﻿using MediatR;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http.Json;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
+using Vehicably.Decorators;
+using Vehicably.Endpoints;
 using Vehicably.Infrastructure.DAL;
 
 namespace Vehicably.Extensions;
@@ -15,6 +19,11 @@ public static class Configuration
         {
             options.SerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
         });
+
+        builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnitOfWorkDecorator<,>));
+
+        builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Program>());
+
 
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services
@@ -38,6 +47,8 @@ public static class Configuration
         var dbContext = scope.ServiceProvider.GetRequiredService<VehicablyDbContext>();
         
         dbContext.Database.Migrate();
+
+        app.MapGroup("/api/vehicledata/brands").MapVehicleBrandsApi();
     }
 
 }

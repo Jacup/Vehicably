@@ -32,18 +32,8 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         try
         {
             var result = await action();
-            var datetime = DateTime.Now;
-
-            var entries = context.ChangeTracker.Entries()
-                .Where(entry => entry.Entity is DbObject && (entry.State == EntityState.Added || entry.State == EntityState.Modified));
-
-            foreach (var entry in entries)
-            {
-                entry.Property("UpdatedDate").CurrentValue = datetime;
-
-                if (entry.State == EntityState.Added)
-                    entry.Property("CreatedDate").CurrentValue = datetime;
-            }
+            
+            UpdateTimestamps();
 
             await context.SaveChangesAsync();
             await transaction.CommitAsync();
@@ -54,6 +44,22 @@ public class UnitOfWork : IUnitOfWork, IDisposable
         {
             await context.Database.RollbackTransactionAsync();
             throw;
+        }
+    }
+
+    private void UpdateTimestamps()
+    {
+        var datetime = DateTime.Now;
+
+        var entries = context.ChangeTracker.Entries()
+            .Where(entry => entry.Entity is DbObject && (entry.State == EntityState.Added || entry.State == EntityState.Modified));
+
+        foreach (var entry in entries)
+        {
+            entry.Property("UpdatedDate").CurrentValue = datetime;
+
+            if (entry.State == EntityState.Added)
+                entry.Property("CreatedDate").CurrentValue = datetime;
         }
     }
 }

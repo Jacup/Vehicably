@@ -1,9 +1,9 @@
 ﻿using MediatR;
+using Vehicably.Application.Queries;
 using Vehicably.Domain.Models.Vehicles.VehicleData;
 using Vehicably.Infrastructure.Services.Interfaces;
-using Vehicably.Requests.Query;
 
-namespace Vehicably.Requests.QueryHandler;
+namespace Vehicably.Application.QueryHandlers;
 
 public class GetAllVehicleBrandsQueryHandler(IUnitOfWork unitOfWork) : IRequestHandler<GetAllVehicleBrandsQuery, IEnumerable<VehicleBrand>>
 {

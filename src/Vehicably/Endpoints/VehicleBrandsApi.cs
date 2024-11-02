@@ -1,28 +1,49 @@
 ﻿using MediatR;
-using Vehicably.Infrastructure.Services.Interfaces;
-using Vehicably.Requests.Query;
+using Vehicably.Application.Queries;
 
-namespace Vehicably.Endpoints;
+namespace Vehicably.Api.Endpoints;
 
-public static class VehicleBrandsApi
+public class VehicleBrandsApi : IApiMapper
 {
     private const string Path = "vehicledata/brands";
 
-    public static RouteGroupBuilder MapVehicleBrandsApi(this RouteGroupBuilder builder)
-    {
-        builder.MapGet("/", async (IMediator mediator) =>
-        {
-            var results = await mediator.Send(new GetAllVehicleBrandsQuery());
+    private readonly IMediator mediator;
 
-            return Results.Ok(results);
-        })
+    public VehicleBrandsApi(IMediator mediator)
+    {
+        this.mediator = mediator;
+    }
+
+    public WebApplication Map(WebApplication app)
+    {
+        var group = app.MapGroup($"/api/{Path}");
+
+        group.MapGet("/", async () => await GetAll())
+            .Produces(StatusCodes.Status200OK)
+            .WithOpenApi();
+
+        group.MapGet("/{id}", async (Guid id) => await GetById(id))
             .Produces(StatusCodes.Status200OK)
             .Produces(StatusCodes.Status404NotFound)
             .WithOpenApi();
 
+        return app;
+    }
 
+    public async Task<IResult> GetAll()
+    {
+        var entities = await mediator.Send(new GetAllVehicleBrandsQuery());
 
+        return Results.Ok(entities);
+    }
 
-        return builder;
+    public async Task<IResult> GetById(Guid id)
+    {
+        var entity = await mediator.Send(new GetVehicleBrandByIdQuery() { Id = id });
+
+        if (entity == null)
+            return Results.NotFound();
+
+        return Results.Ok(entity);
     }
 }

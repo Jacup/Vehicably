@@ -1,10 +1,7 @@
-﻿using MediatR;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http.Json;
+﻿using Microsoft.AspNetCore.Http.Json;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
-using Vehicably.Decorators;
-using Vehicably.Endpoints;
+using Vehicably.Api.Endpoints;
 using Vehicably.Infrastructure.DAL;
 
 namespace Vehicably.Extensions;
@@ -20,15 +17,15 @@ public static class Configuration
             options.SerializerOptions.DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull;
         });
 
-        builder.Services.AddTransient(typeof(IPipelineBehavior<,>), typeof(UnitOfWorkDecorator<,>));
-
-        builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblyContaining<Program>());
-
-
         // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
         builder.Services
             .AddEndpointsApiExplorer()
             .AddSwaggerGen();
+    }
+
+    public static void RegisterEndpoints(this WebApplicationBuilder builder)
+    {
+        builder.Services.AddScoped<IApiMapper, VehicleBrandsApi>();
     }
 
     public static void RegisterMiddleware(this WebApplication app)
@@ -42,13 +39,13 @@ public static class Configuration
         app.UseHttpsRedirection();
         app.UseAuthorization();
 
-
         using var scope = app.Services.CreateScope();
         var dbContext = scope.ServiceProvider.GetRequiredService<VehicablyDbContext>();
-        
         dbContext.Database.Migrate();
-
-        app.MapGroup("/api/vehicledata/brands").MapVehicleBrandsApi();
     }
 
+    public static void MapEndpoints(this WebApplication app)
+    {
+        app.Services.GetRequiredService<VehicleBrandsApi>().Map(app);
+    }
 }

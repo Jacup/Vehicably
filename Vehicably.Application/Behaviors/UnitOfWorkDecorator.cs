@@ -1,7 +1,7 @@
 ﻿using MediatR;
 using Vehicably.Infrastructure.Services.Interfaces;
 
-namespace Vehicably.Decorators;
+namespace Vehicably.Application.Behaviors;
 
 public class UnitOfWorkDecorator<TRequest, TResponse> : IPipelineBehavior<TRequest, TResponse> where TRequest : IRequest<TResponse>
 {

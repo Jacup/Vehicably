@@ -1,6 +1,6 @@
-﻿using Vehicably.Domain.Models.Vehicles.VehicleData;
+﻿using Vehicably.Domain.Entities.VehicleData;
 
-namespace Vehicably.Domain.Models.Vehicles;
+namespace Vehicably.Domain.Entities.Vehicles;
 
 public class Vehicle : DbObject
 {

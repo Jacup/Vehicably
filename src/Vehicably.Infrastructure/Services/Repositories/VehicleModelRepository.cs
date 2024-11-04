@@ -1,6 +1,6 @@
-﻿using Vehicably.Domain.Models.Vehicles.VehicleData;
+﻿using Vehicably.Domain.Entities.VehicleData;
+using Vehicably.Domain.Repositories.VehicleData;
 using Vehicably.Infrastructure.DAL;
-using Vehicably.Infrastructure.Services.Interfaces;
 
 namespace Vehicably.Infrastructure.Services.Repositories;
 

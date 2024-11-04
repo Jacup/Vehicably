@@ -1,6 +1,6 @@
-﻿using Vehicably.Domain.Models;
+﻿using Vehicably.Domain.Entities;
 
-namespace Vehicably.Infrastructure.Services.Interfaces;
+namespace Vehicably.Domain.Repositories;
 
 public interface IRepository<T> where T : DbObject
 {

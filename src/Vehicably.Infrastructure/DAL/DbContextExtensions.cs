@@ -1,8 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Vehicably.Domain.Repositories;
+using Vehicably.Domain.Repositories.VehicleData;
 using Vehicably.Infrastructure.Services;
-using Vehicably.Infrastructure.Services.Interfaces;
 using Vehicably.Infrastructure.Services.Repositories;
 
 namespace Vehicably.Infrastructure.DAL;

@@ -1,7 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Vehicably.Domain.Models;
+using Vehicably.Domain.Entities;
+using Vehicably.Domain.Repositories;
+using Vehicably.Domain.Repositories.VehicleData;
 using Vehicably.Infrastructure.DAL;
-using Vehicably.Infrastructure.Services.Interfaces;
 
 namespace Vehicably.Infrastructure.Services;
 

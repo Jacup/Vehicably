@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http.Json;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
-using Vehicably.Api.Endpoints;
 using Vehicably.Infrastructure.DAL;
 
 namespace Vehicably.Extensions;
@@ -11,6 +10,7 @@ public static class Configuration
     public static void RegisterServices(this WebApplicationBuilder builder)
     {
         builder.Services.AddAuthorization();
+        builder.Services.AddControllers();
 
         builder.Services.Configure<JsonOptions>(options =>
         {
@@ -21,11 +21,6 @@ public static class Configuration
         builder.Services
             .AddEndpointsApiExplorer()
             .AddSwaggerGen();
-    }
-
-    public static void RegisterEndpoints(this WebApplicationBuilder builder)
-    {
-        builder.Services.AddScoped<IApiMapper, VehicleBrandsApi>();
     }
 
     public static void RegisterMiddleware(this WebApplication app)
@@ -39,13 +34,10 @@ public static class Configuration
         app.UseHttpsRedirection();
         app.UseAuthorization();
 
+        app.MapControllers();
+
         using var scope = app.Services.CreateScope();
         var dbContext = scope.ServiceProvider.GetRequiredService<VehicablyDbContext>();
         dbContext.Database.Migrate();
-    }
-
-    public static void MapEndpoints(this WebApplication app)
-    {
-        app.Services.GetRequiredService<VehicleBrandsApi>().Map(app);
     }
 }

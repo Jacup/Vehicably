@@ -1,4 +1,6 @@
-﻿namespace Vehicably.Infrastructure.Services.Interfaces;
+﻿using Vehicably.Domain.Repositories.VehicleData;
+
+namespace Vehicably.Domain.Repositories;
 
 public interface IUnitOfWork
 {

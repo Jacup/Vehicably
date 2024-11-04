@@ -1,4 +1,4 @@
-﻿namespace Vehicably.Domain.Models;
+﻿namespace Vehicably.Domain.Entities;
 
 public class DbObject
 {

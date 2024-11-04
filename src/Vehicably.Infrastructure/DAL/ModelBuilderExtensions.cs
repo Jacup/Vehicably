@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
-using Vehicably.Domain.Models.Vehicles.VehicleData;
+using Vehicably.Domain.Entities.VehicleData;
 
 namespace Vehicably.Infrastructure.DAL;
 

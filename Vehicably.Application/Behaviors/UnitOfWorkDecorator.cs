@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Vehicably.Infrastructure.Services.Interfaces;
+using Vehicably.Domain.Repositories;
 
 namespace Vehicably.Application.Behaviors;
 

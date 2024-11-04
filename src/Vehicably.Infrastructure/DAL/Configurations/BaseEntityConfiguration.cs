@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Vehicably.Domain.Models;
+using Vehicably.Domain.Entities;
 
 namespace Vehicably.Infrastructure.DAL.Configurations;
 

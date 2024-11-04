@@ -7,11 +7,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<Folder Include="Commands\" />
-		<Folder Include="CommandHandlers\" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<PackageReference Include="MediatR" Version="12.4.1" />
 		<PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.0" />
 	</ItemGroup>
@@ -19,6 +14,11 @@
 	<ItemGroup>
 		<ProjectReference Include="..\src\Vehicably.Domain\Vehicably.Domain.csproj" />
 		<ProjectReference Include="..\src\Vehicably.Infrastructure\Vehicably.Infrastructure.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="VehicleData\VehicleModel\" />
+	  <Folder Include="VehicleData\VehicleBrand\Requests\" />
 	</ItemGroup>
 
 </Project>

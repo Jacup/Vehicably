@@ -1,7 +1,6 @@
-﻿using Vehicably.Domain.Exceptions;
-using Vehicably.Domain.Models;
+﻿using Vehicably.Domain.Entities;
 
-namespace Vehicably.Infrastructure.Exceptions;
+namespace Vehicably.Domain.Exceptions;
 
 public class EntityNotFoundException<T> : CustomException where T : DbObject
 {

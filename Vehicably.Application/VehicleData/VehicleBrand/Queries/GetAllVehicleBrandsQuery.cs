@@ -1,7 +1,7 @@
 ﻿using MediatR;
-using Vehicably.Domain.Models.Vehicles.VehicleData;
+using Vehicably.Domain.Entities.VehicleData;
 
-namespace Vehicably.Application.Queries;
+namespace Vehicably.Application.VehicleData.Queries;
 
 public class GetAllVehicleBrandsQuery : IRequest<IEnumerable<VehicleBrand>>
 {

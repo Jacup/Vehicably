@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Vehicably.Domain.Models;
+using Vehicably.Domain.Entities;
+using Vehicably.Domain.Exceptions;
+using Vehicably.Domain.Repositories;
 using Vehicably.Infrastructure.DAL;
-using Vehicably.Infrastructure.Exceptions;
-using Vehicably.Infrastructure.Services.Interfaces;
 
 namespace Vehicably.Infrastructure.Services.Repositories;
 

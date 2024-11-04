@@ -1,4 +1,4 @@
-﻿namespace Vehicably.Domain.Models.Vehicles.VehicleData;
+﻿namespace Vehicably.Domain.Entities.VehicleData;
 
 public class VehicleModel : DbObject
 {

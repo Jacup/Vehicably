@@ -11,8 +11,8 @@ public class Program
     {
         var builder = WebApplication.CreateBuilder(args);
 
-        builder.AddApplication();
         builder.RegisterServices();
+        builder.AddApplication();
 
         var connectionString = builder.Configuration.GetConnectionString("VehicablyDbConnection");
         builder.Services.ConfigureDbContext(connectionString);
@@ -20,7 +20,6 @@ public class Program
         var app = builder.Build();
 
         app.RegisterMiddleware();
-        app.MapEndpoints();
 
         app.Run();
     }
